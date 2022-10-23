@@ -32,7 +32,7 @@ namespace StockGularBack.Data.DB
         {
             modelBuilder.Entity<Article>(entity =>
             {
-                entity.HasNoKey();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CategoryId).HasColumnName("categoryId");
 
@@ -49,10 +49,6 @@ namespace StockGularBack.Data.DB
                     .HasMaxLength(100)
                     .HasColumnName("designation")
                     .IsFixedLength();
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ID");
 
                 entity.Property(e => e.IdEntreprise).HasColumnName("idEntreprise");
 
@@ -72,15 +68,11 @@ namespace StockGularBack.Data.DB
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.HasNoKey();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Designation)
                     .HasMaxLength(100)
                     .IsFixedLength();
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ID");
             });
 
             OnModelCreatingPartial(modelBuilder);
